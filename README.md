@@ -7,7 +7,7 @@ Série d'exemples de code permettant d'appréhender les différentes composantes
 
 1. Exécuter dans le répertoire la commande `npm install`  qui va installer toutes les dépendances Node.js
 
-2. Pour visualiser un exemple, copier le code d'un des fichers se trouvant dans le dossier `exemple` le coller dans  `app/js/app.js` et exécuter `npm run start` 
+2. Pour visualiser le rendu d'un exemple, copier le code d'un fichier `ex_ ` le coller dans  `app/js/app.js` et exécuter la commande `npm run start` 
 
 
 ### Scripts disponibles
