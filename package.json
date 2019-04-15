@@ -1,5 +1,5 @@
 {
-  "name": "wordpress-theme-webpack",
+  "name": "OpenLayers-Examples",
   "version": "1.0.0",
   "scripts": {
     "start": "export NODE_ENV=watch && webpack-dev-server --progress --colors --watch --config webpack.config.dev.js",
