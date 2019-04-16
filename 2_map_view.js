@@ -3,7 +3,7 @@
  * Changer la projection
  * -----------------------------
  * 
- * il est possible de spécifier plusieurs options dans la vue
+ * Il est possible de spécifier plusieurs options dans la vue
  * comme la résolution de la carte, la rotation et la projection 
  * ol.proj  qui par défaut, est l'EPSG:3857 et l'EPSG:4326 est aussi chargée.
  * Le code suivant introduit le centrage de la 
