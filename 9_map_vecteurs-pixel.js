@@ -7,9 +7,7 @@
  * On peut lire les données attributaires d'une source de données en un pixel donné
  * en faisant appel à la fonction forEachFeatureAtPixel liée à l'objet de la classe Map.
  */
-// classes nécéssaires pour afficher la carte
-import Map from 'ol/Map';
-import View from 'ol/View';
+
 //import TileLayer from 'ol/layer/Tile';
 //import OSM from 'ol/source/OSM';
 
