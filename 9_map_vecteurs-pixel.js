@@ -10,10 +10,9 @@
 // classes nécéssaires pour afficher la carte
 import Map from 'ol/Map';
 import View from 'ol/View';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
+//import TileLayer from 'ol/layer/Tile';
+//import OSM from 'ol/source/OSM';
 
-import GPX from 'ol/format/GPX';
 import GeoJSON from 'ol/format/GeoJSON';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
