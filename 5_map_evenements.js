@@ -5,7 +5,10 @@
  */
 
 /**
-De nombreuses méthodes sont liées à la classe Map et elles peuvent être déclenchées à partir d'actions appelées "Fires". Les plus utilisées sont on(type, listener, opt_this), once(type, listener, opt_this) qui contiennent une fonction afin d'obtenir des informations de la classe "parent". Ces méthodes sont aussi héritées pour d'autres classes comme celles prenant en charge les sources de données.
+De nombreuses méthodes sont liées à la classe Map et elles peuvent être déclenchées à partir d'actions appelées "Fires".
+Les plus utilisées sont on(type, listener, opt_this), once(type, listener, opt_this) qui contiennent 
+une fonction afin d'obtenir des informations de la classe "parent".
+Ces méthodes sont aussi héritées pour d'autres classes comme celles prenant en charge les sources de données.
 
 Dans la version actuelle d'OL, on peut classer les déclencheurs des méthodes selon cinq types :
 
