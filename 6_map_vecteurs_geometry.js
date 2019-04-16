@@ -4,7 +4,12 @@
  * --------------------------------
  */
 /** 
-Un vecteur est défini par les entités géographiques qui le composent. Ces dernières ont une géométrie qui peut être différente les unes des autres dans un même vecteur et des valeurs relatives aux champs attributaires de la donnée. Les géométries sont soit un point, une ligne, un polygone et lorsque plusieurs entités de géométries différentes composent un vecteur, on parle de collection d'objets. OL décompose le vecteur en trois éléments :
+Un vecteur est défini par les entités géographiques qui le composent.
+Ces dernières ont une géométrie qui peut être différente les unes des autres 
+dans un même vecteur et des valeurs relatives aux champs attributaires de la donnée.
+Les géométries sont soit un point, une ligne, un polygone et lorsque plusieurs entités 
+de géométries différentes composent un vecteur, on parle de collection d'objets.
+OL décompose le vecteur en trois éléments :
 
  - une ou plusieurs entités ol.Feature avec leurs géométries et leurs attributs ;
  - une source de données ol.Source.Vector qui prend en charge les entités. 
@@ -13,11 +18,19 @@ Un vecteur est défini par les entités géographiques qui le composent. Ces der
 
  Les classes des entités, des sources et des données vectorielles :
 
-La classe ol.Feature représentant une entité géographique est caractérisée par plusieurs setters et getters, ainsi il est possible d'obtenir ou d'intégrer plusieurs composantes comme la géométrie setGeometry(geometry)/getGeometry(geometry), un identifiant unique setId()/getId(), une valeur attributaire d'un champ key set(key)/get(key), un style ou une fonction de style setStyle()/getStyle(). En outre, il est possible d'obtenir l'ensemble des champs attributaires par la méthode getKeys() et l'objet de l'entité regroupant la geométrie, les champs et leurs valeurs attributaires : getProperties(). Par défaut, le nom du champs de la géométrie est geometry.
+La classe ol.Feature représentant une entité géographique est caractérisée par plusieurs
+setters et getters, ainsi il est possible d'obtenir ou d'intégrer plusieurs composantes comme
+la géométrie setGeometry(geometry)/getGeometry(geometry), un identifiant unique setId()/getId(),
+une valeur attributaire d'un champ key set(key)/get(key), un style ou une fonction de style setStyle()/getStyle().
+En outre, il est possible d'obtenir l'ensemble des champs attributaires par la méthode getKeys() et l'objet de l'entité regroupant la geométrie, les champs et leurs valeurs attributaires : getProperties(). Par défaut, le nom du champs de la géométrie est geometry.
 
 Création d'entités géographiques :
 
-Commençons par la création de géométries indépendantes d'une source de données externes. Les différentes types de géométrie sont définies par la classe ol.geom suivie du type de géométrie : Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon, GeometryCollection, Circle. Chaque géométrie est composée par un ou des points définis par des coordonnées géographiques X (la longitude) et Y (la latitude). Le code ci-après montre la création d'un point, d'une ligne et d'un polygone.
+Commençons par la création de géométries indépendantes d'une source de données externes.
+Les différentes types de géométrie sont définies par la classe ol.geom suivie du type de géométrie : 
+Point, LineString, LinearRing, Polygon, MultiPoint, MultiLineString, MultiPolygon, GeometryCollection, Circle.
+Chaque géométrie est composée par un ou des points définis par des coordonnées géographiques X (la longitude) 
+et Y (la latitude). Le code ci-après montre la création d'un point, d'une ligne et d'un polygone.
  */
 
 // classes nécéssaires pour afficher la carte
