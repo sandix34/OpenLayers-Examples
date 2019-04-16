@@ -22,7 +22,9 @@ La classe ol.Feature représentant une entité géographique est caractérisée 
 setters et getters, ainsi il est possible d'obtenir ou d'intégrer plusieurs composantes comme
 la géométrie setGeometry(geometry)/getGeometry(geometry), un identifiant unique setId()/getId(),
 une valeur attributaire d'un champ key set(key)/get(key), un style ou une fonction de style setStyle()/getStyle().
-En outre, il est possible d'obtenir l'ensemble des champs attributaires par la méthode getKeys() et l'objet de l'entité regroupant la geométrie, les champs et leurs valeurs attributaires : getProperties(). Par défaut, le nom du champs de la géométrie est geometry.
+En outre, il est possible d'obtenir l'ensemble des champs attributaires par la méthode getKeys() et l'objet 
+de l'entité regroupant la geométrie, les champs et leurs valeurs attributaires : 
+getProperties(). Par défaut, le nom du champs de la géométrie est geometry.
 
 Création d'entités géographiques :
 
