@@ -18,6 +18,8 @@
  * et OpenStreetMap (OSM).
  */
 
+ 
+
 // classes nécéssaires pour afficher la carte
 import Map from 'ol/Map';
 import View from 'ol/View';
