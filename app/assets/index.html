@@ -4,14 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OpenLayers</title>
-    <link rel="stylesheet" href="../scss/main.scss"/>
+    <link rel="stylesheet" href="../css/main.css"/>
 </head>
 <body>
     <div id="map"></div>
-    <div>
-        &lt;!DOCTYPE html&gt;
-         &lt;html&gt; &lt;head&gt; &lt;title&gt;Tiled ArcGIS MapServer&lt;/title&gt; &lt;link rel=&quot;stylesheet&quot; href=&quot;https://openlayers.org/en/v5.3.0/css/ol.css&quot; type=&quot;text/css&quot;&gt; &lt;!-- The line below is only needed for old environments like Internet Explorer and Android 4.x --&gt; &lt;script src=&quot;https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL&quot;&gt;&lt;/script&gt; &lt;/head&gt; &lt;body&gt; &lt;div id=&quot;map&quot; class=&quot;map&quot;&gt;&lt;/div&gt; &lt;script&gt; import Map from &#039;ol/Map.js&#039;; import View from &#039;ol/View.js&#039;; import TileLayer from &#039;ol/layer/Tile.js&#039;; import {OSM, TileArcGISRest} from &#039;ol/source.js&#039;; var url = &#039;https://sampleserver1.arcgisonline.com/ArcGIS/rest/services/&#039; + &#039;Specialty/ESRI_StateCityHighway_USA/MapServer&#039;; var layers = [ new TileLayer({ source: new OSM() }), new TileLayer({ extent: [-13884991, 2870341, -7455066, 6338219], source: new TileArcGISRest({ url: url }) }) ]; var map = new Map({ layers: layers, target: &#039;map&#039;, view: new View({ center: [-10997148, 4569099], zoom: 4 }) }); &lt;/script&gt; &lt;/body&gt; &lt;/html&gt; 
-    </div>
     <script src="../js/app.js"></script>
 </body>
 </html>

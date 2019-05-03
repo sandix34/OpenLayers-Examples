@@ -22,7 +22,7 @@ const watchMode = process.env.NODE_ENV === 'watch';
 let config = {
   entry: [
     './app/js/app.js',
-    './app/scss/main.scss',
+    './app/css/main.css',
   ],
   mode: 'development',
   output: {
@@ -57,26 +57,7 @@ let config = {
               sourceMap: true
             }
           },
-          // Permet de compiler le sass
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }
         ]
-      },
-      // Fonts
-      {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'fonts/',
-            publicPath: '../fonts'
-          }
-        },
       },
     ]
   },
