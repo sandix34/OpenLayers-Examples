@@ -1,8 +1,12 @@
 /*
 VII. LES GROUPES DE COUCHES, LES CLUSTERS ET LES OVERLAYS
-Ce chapitre met en évidence certaines fonctionnalités d'OL afin d'améliorer l'interface de WebMapping et l'utilisation des données géographiques.
+Ce chapitre met en évidence certaines fonctionnalités d'OL afin d'améliorer l'interface de WebMapping
+et l'utilisation des données géographiques.
 VII.1. LES GROUPES DE COUCHES
-OL implémente un conteneur qui autorise le regroupement de couches SIG par la classe ol.layer.Group . L'objet ainsi créé présente l'avantage de pouvoir gérer des actions simultanées sur les couches prises en compte.
+OL implémente un conteneur qui autorise le regroupement de couches SIG
+par la classe ol.layer.Group .
+L'objet ainsi créé présente l'avantage de pouvoir gérer
+des actions simultanées sur les couches prises en compte.
 */
 
 // Source de données et couche OpenStreetMap
