@@ -1,93 +1,54 @@
-//Les overlays sont largement utilisés afin de montrer les attributs d'une entité géographique dans une popup.
+//Les overlays sont largement utilisés afin de montrer
+//les attributs d'une entité géographique dans une popup.
 
-<html>
-<head>
-<title>Overlays Popup</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link rel="stylesheet" href="../css/ol.css" type="text/css">
-<style>
-.ol-popup {
-	position: absolute;
-	background-color: white;
-	-webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-	filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-	padding: 15px;
-	border-radius: 10px;
-	border: 1px solid #cccccc;
-	bottom: 12px;
-	left: -50px;
-	min-width: 280px;
-}
-.ol-popup:after, .ol-popup:before {
-	top: 100%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
-.ol-popup:after {
-	border-top-color: white;
-	border-width: 10px;
-	left: 48px;
-	margin-left: -10px;
-}
-.ol-popup:before {
-	border-top-color: #cccccc;
-	border-width: 11px;
-	left: 48px;
-	margin-left: -11px;
-}
-.ol-popup-closer {
-	text-decoration: none;
-	position: absolute;
-	top: 2px;
-	right: 8px;
-}
-.ol-popup-closer:after {
-	content: "✖";
-}
-</style>
-</head>
-<body>
-<div style="display:none;">
-	<!-- Popup -->
-    <div id="popup" class="ol-popup">
-      <a href="#" id="popup-closer" class="ol-popup-closer"></a>
-      <div id="popup-content"></div>
-    </div>
-</div>
-<div id="map"></div>
-</body>
-<script src="../js/ol.js"></script>
-<script>
-// Source de données du vecteur en format GeoJSON
-var sourceGeoJSON = new ol.source.Vector({
-	url: 'data/pays.geojson',
-	format: new ol.format.GeoJSON()
+
+// classes nécéssaires pour afficher la carte
+import 'ol/ol.css';
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+
+// Un élément à afficher sur la carte et associé à un emplacement de carte unique
+import Overlay from 'ol/Overlay';
+
+// classes pour les vecteurs
+import GPX from 'ol/format/GPX';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+
+// Sources de données et couche OpenStreetMap
+let osm = new TileLayer({
+    source: new OSM(),
+});
+
+
+// Source de données du vecteur en format GPX
+let sourceGPX = new VectorSource({ 
+	url: '../data/capitales.gpx',
+	format: new GPX()
 });
 // Déclaration de la couche vectorielle	
-var vecteurGeoJSON=new ol.layer.Vector({
-	source: sourceGeoJSON,
-	title: 'GeoJSON'
+let vecteurGPX = new VectorLayer({
+	source: sourceGPX,
 });
+
 // Déclaration de la carte
-var map = new ol.Map({
-	layers: [vecteurGeoJSON],
+const map = new Map({
+	layers: [osm, vecteurGPX],
 	target: 'map',
-	view: new ol.View({
+	view: new View({
 		center: [0,0],
-		zoom: 1
+		zoom: 2
 	}),
 });
 
 // Popup 
-var container = document.getElementById('popup');
-var content = document.getElementById('popup-content');
-var closer = document.getElementById('popup-closer');
+let container = document.getElementById('popup');
+let content = document.getElementById('popup-content');
+let closer = document.getElementById('popup-closer');
 // Création de l'Overlay Popup 
-var overlay = new ol.Overlay({
+let overlay = new Overlay({
 	element: container,
 	autoPan: true,
 	autoPanAnimation: {
@@ -95,27 +56,25 @@ var overlay = new ol.Overlay({
 	}
 });	
 // Fermeture du popup au clic sur popup-closer 
-closer.onclick = function() {
+closer.onclick = () => {
 	overlay.setPosition(undefined);
 	closer.blur();
 	return false;
 };	
-map.on('click', function(evt) {
+map.on('click', (evt) => {
 	// On récupère les coordonnées 
-	var coordinate = evt.coordinate;
-	var featureSelect = map.forEachFeatureAtPixel(evt.pixel, function(feature){
+	let coordinate = evt.coordinate;
+	let featureSelect = map.forEachFeatureAtPixel(evt.pixel, (feature) => {
 		return feature;
 	});
 	// Si on obtient l'objet
 	if(featureSelect){
 		// On déclare son identifiant unique
-		var nomPays = featureSelect.get('name');
-		content.innerHTML = 'Nom du Pays : <b>' +nomPays+'</b>';
+		let nomCapitale = featureSelect.get('name');
+		content.innerHTML = 'Nom du Pays : <b>' +nomCapitale+'</b>';
 		map.addOverlay(overlay);
 		overlay.setPosition(coordinate);
 	}else{
 		map.removeOverlay(overlay);
 	}
-});
-</script>
-</html>
+});     
