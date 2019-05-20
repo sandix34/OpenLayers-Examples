@@ -1,27 +1,56 @@
 /* 
 VI.3. LES FONCTIONS DE STYLE
-Le pouvoir de la cartographie est de montrer des informations distinctement pour une lecture efficace par les utilisateurs. Ainsi, il est important de segmenter les entités géographiques selon leur valeurs attributaires et la résolution spatiale. Pour cela, on se sert de la fonction de style implémentée par OL. De part la fonction de style, on peut obtenir l'objet géographique du vecteur stylisé ainsi que la résolution de la vue de la carte. Pour une fonction liée à une valeur attributaire, on a :
+Le pouvoir de la cartographie est de montrer des informations distinctement
+pour une lecture efficace par les utilisateurs.
+Ainsi, il est important de segmenter les entités géographiques selon
+leur valeurs attributaires et la résolution spatiale.
+Pour cela, on se sert de la fonction de style implémentée par OL.
+De part la fonction de style, on peut obtenir l'objet géographique
+du vecteur stylisé ainsi que la résolution de la vue de la carte.
+Pour une fonction liée à une valeur attributaire, on a :
 */
 
-var remplissageCouleur;
-var contourCouleur;
-var fonctionStyle = function(entite){
+// classes nécéssaires pour afficher la carte
+import 'ol/ol.css';
+import Map from 'ol/Map';
+import View from 'ol/View';
+
+// classes pour les vecteurs
+import GeoJSON from 'ol/format/GeoJSON';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+
+// Conteneur pour les styles de rendu d'entités vectorielles
+import Style from 'ol/style/Style';
+//Définir le style de trait pour les entités vectorielles
+import Stroke from 'ol/style/Stroke';
+//Définir le style de remplissage pour les entités vectorielles.
+import Fill from 'ol/style/Fill';
+// Définir le style de texte pour les entités vectorielles.
+import Text from 'ol/style/Text';
+
+
+/** 
+
+let remplissageCouleur;
+let contourCouleur;
+const fonctionStyle = (entite) => {
 	// On obtient les valeurs des entités géographiques
-	var nomPays=entite.get('name');
+	let nomPays=entite.get('name');
 	// Mise en place de classe selon le nom du Pays qui commence par la lettre S
 	if(nomPays[0]==="S"){
-		remplissageCouleur='rgba(0, 255, 0, 0.3)';
-		contourCouleur='rgba(34, 121, 34, 1.0)';
+		remplissageCouleur='#b5faba';
+		contourCouleur='#227823';
 	}else{
-		remplissageCouleur='rgba(0, 0, 255, 0.3)';
-		contourCouleur='rgba(0, 0, 255, 1.0)';
+		remplissageCouleur='#bfb4fc';
+		contourCouleur='#0c39ff';
 	}
-	var styleBasic = new ol.style.Style({
-		stroke : new ol.style.Stroke({
+	let styleBasic = new Style({
+		stroke : new Stroke({
 		   color: contourCouleur,
 		   width: 3
 		}),
-		fill : new ol.style.Fill({
+		fill : new Fill({
 			color: remplissageCouleur
 		})
 	});
@@ -29,65 +58,67 @@ var fonctionStyle = function(entite){
 	return [styleBasic];
 }
 // Source de données du vecteur en format GeoJSON
-var sourceGeoJSON = new ol.source.Vector({
+var sourceGeoJSON = new Vector({
 	url: 'data/pays.geojson',
-	format: new ol.format.GeoJSON()
+	format: new GeoJSON()
 });
 // Déclaration de la couche vectorielle	
-var vecteurGeoJSON = new ol.layer.Vector({
+var vecteurGeoJSON = new VectorLayer({
 	source: sourceGeoJSON,
 	style: fonctionStyle		
 });
 // Déclaration de la carte
-var map = new ol.Map({
+var map = new Map({
 	layers: [vecteurGeoJSON],
 	target: 'map',
-	view: new ol.View({
+	view: new View({
 		center: [0,0],
 		zoom: 2
 	}),
 });
 
+*/
+
 // On ajoute un texte lorsque la carte atteint un certain seuil de résolution :
 
-var remplissageCouleur;
-var contourCouleur;
-var fonctionStyle = function(entite,resolution){
+let remplissageCouleur;
+let contourCouleur;
+const fonctionStyle = (entite,resolution) => {
 	// On obtient les valeurs des entités géographiques
-	var nomPays=entite.get('name');
+	let nomPays=entite.get('name');
 	// Mise en place de classe selon le nom du Pays qui commence par la lettre S
 	if(nomPays[0]==="S"){
-		remplissageCouleur='rgba(0, 255, 0, 0.3)';
-		contourCouleur='rgba(34, 121, 34, 1.0)';
+		remplissageCouleur='#b5faba';
+		contourCouleur='#227823';
 	}else{
-		remplissageCouleur='rgba(0, 0, 255, 0.3)';
-		contourCouleur='rgba(0, 0, 255, 1.0)';
+		remplissageCouleur='#bfb4fc';
+		contourCouleur='#0c39ff';
 	}
-	var styleBasic = new ol.style.Style({
-		stroke : new ol.style.Stroke({
+	let styleBasic = new Style({
+		stroke : new Stroke({
 		   color: contourCouleur,
 		   width: 3
 		}),
-		fill : new ol.style.Fill({
+		fill : new Fill({
 			color: remplissageCouleur
 		})
 	});
-	var styleTexte = new ol.style.Style({
-		stroke : new ol.style.Stroke({
+	let styleTexte = new Style({
+		stroke : new Stroke({
 		   color: contourCouleur,
 		   width: 3
 		}),
-		fill : new ol.style.Fill({
+		fill : new Fill({
 			color: remplissageCouleur
 		}),		
-		text: new ol.style.Text({
+		text: new Text({
 			text: nomPays,
 			font: 'bold 16px Times New Roman',
 			offsetY: -15,
-			fill: new ol.style.Fill({
+			fill: new Fill({
 				color: '#fff'
 			}),
-			stroke: new ol.style.Stroke({
+			stroke: new Stroke({
 				color: contourCouleur, 
 				width: 5
 			})
@@ -101,22 +132,21 @@ var fonctionStyle = function(entite,resolution){
 	}
 }
 // Source de données du vecteur en format GeoJSON
-var sourceGeoJSON = new ol.source.Vector({
+const sourceGeoJSON = new VectorSource({
 	url: 'data/pays.geojson',
-	format: new ol.format.GeoJSON()
+	format: new GeoJSON()
 });
 // Déclaration de la couche vectorielle	
-var vecteurGeoJSON = new ol.layer.Vector({
+const vecteurGeoJSON = new VectorLayer({
 	source: sourceGeoJSON,
 	style: fonctionStyle		
 });
 // Déclaration de la carte
-var map = new ol.Map({
+const map = new Map({
 	layers: [vecteurGeoJSON],
 	target: 'map',
-	view: new ol.View({
+	view: new View({
 		center: [0,0],
 		zoom: 4
 	}),
 });
-
