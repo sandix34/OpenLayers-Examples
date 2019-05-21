@@ -17,6 +17,11 @@ import Stroke from 'ol/style/Stroke';
 //Définir le style de remplissage pour les entités vectorielles.
 import Fill from 'ol/style/Fill';
 
+// Interaction pour la sélection d'entités vectorielles.
+import Select from 'ol/interaction/Select';
+import { pointerMove} from 'ol/events/condition';
+
+
 // Source de données du vecteur en format GeoJSON
 const sourceGeoJSON = new VectorSource({
 	url: 'data/pays.geojson',
@@ -46,9 +51,9 @@ const styleSelect = new Style({
 	})
 });
 // Déclaration de l'interaction avec des options
-const interactionSelect = new ol.interaction.Select({
+const interactionSelect = new Select({
 	// Sélection au survol
-	condition: ol.events.condition.pointerMove,
+	condition: pointerMove,
 	// Style de la sélection
 	style: styleSelect,
 });
@@ -68,4 +73,3 @@ entitesSelect.on('add', (e) => {
 	let attributEntite = entite.get('name');
 	console.log(attributEntite);
 });
-
