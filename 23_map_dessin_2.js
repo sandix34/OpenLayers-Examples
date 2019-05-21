@@ -23,6 +23,9 @@ import Fill from 'ol/style/Fill';
 //Définir le style de cercle pour les entités vectorielles.
 import CircleStyle from 'ol/style/Circle';
 
+// Interaction pour dessiner les géométries des entités.
+import Draw from 'ol/interaction/Draw';
+
 // Déclaration du style du vecteur
 const styleVecteur = new Style({
 	fill: new Fill({
@@ -50,7 +53,7 @@ const map = new Map({
 	target: 'map',
 	view: new View({
 		center: [0,0],
-		zoom: 1
+		zoom: 2
 	}),
 });
 // Déclaration du style de l'interaction
@@ -74,11 +77,10 @@ const styleDessin = new Style({
 	})
 });
 // Déclaration de l'interaction
-const interactionDraw = new ol.interaction.Draw({
+const interactionDraw = new Draw({
 	type: 'Polygon',
 	source: sourceGeoJSON,
 	style: styleDessin
 });
 // Ajout de l'interaction
 map.addInteraction(interactionDraw);
-
