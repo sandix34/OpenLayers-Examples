@@ -19,6 +19,9 @@ import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
 
+// Interaction pour la traduction (déplacement) des fonctionnalités.
+import Translate from 'ol/interaction/Translate';
+
 // Source de données du vecteur en format GeoJSON
 const sourceGeoJSON = new VectorSource({
 	url: 'data/pays.geojson',
@@ -34,11 +37,11 @@ const map = new Map({
 	target: 'map',
 	view: new View({
 		center: [0,0],
-		zoom: 1
+		zoom: 2
 	}),
 });
 // Déclaration de l'interaction
-const translation = new ol.interaction.Translate({
+const translation = new Translate({
 	layers: [vecteurGeoJSON]
 });
 map.addInteraction(translation);
