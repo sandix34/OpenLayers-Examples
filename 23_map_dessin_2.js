@@ -1,57 +1,80 @@
-//Ici, la source du vecteur ne possède pas de données. Il est tout à fait possible d'ajouter des entités géographiques à un vecteur ayant déjà des données.
+/** 
+Ici, la source du vecteur ne possède pas de données.
+Il est tout à fait possible d'ajouter des entités géographiques
+à un vecteur ayant déjà des données.
+*/
+
+// classes nécéssaires pour afficher la carte
+import 'ol/ol.css';
+import Map from 'ol/Map';
+import View from 'ol/View';
+
+// classes pour les vecteurs
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import GeoJSON from 'ol/format/GeoJSON';
+
+// Conteneur pour les styles de rendu d'entités vectorielles
+import Style from 'ol/style/Style';
+//Définir le style de trait pour les entités vectorielles
+import Stroke from 'ol/style/Stroke';
+//Définir le style de remplissage pour les entités vectorielles.
+import Fill from 'ol/style/Fill';
+//Définir le style de cercle pour les entités vectorielles.
+import CircleStyle from 'ol/style/Circle';
 
 // Déclaration du style du vecteur
-var styleVecteur = new ol.style.Style({
-	fill: new ol.style.Fill({
+const styleVecteur = new Style({
+	fill: new Fill({
 		color: 'rgba(255, 255, 255, 0.2)'
 	}),
-	stroke: new ol.style.Stroke({
+	stroke: new Stroke({
 		color: 'rgba(20, 255, 50, 1.0)',
 		width: 2
 	})
 });
 // Source de données du vecteur en format GeoJSON
-var sourceGeoJSON = new ol.source.Vector({
+const sourceGeoJSON = new VectorSource({
 	url: 'data/pays.geojson',
-	format: new ol.format.GeoJSON()
+	format: new GeoJSON()
 });
 // Déclaration de la couche vectorielle	
-var vecteurGeoJSON = new ol.layer.Vector({
+const vecteurGeoJSON = new VectorLayer({
 	source: sourceGeoJSON,
 	style: styleVecteur
 });
 
 // Déclaration de la carte
-var map = new ol.Map({
+const map = new Map({
 	layers: [vecteurGeoJSON],
 	target: 'map',
-	view: new ol.View({
+	view: new View({
 		center: [0,0],
 		zoom: 1
 	}),
 });
 // Déclaration du style de l'interaction
-var styleDessin = new ol.style.Style({
-	fill: new ol.style.Fill({
+const styleDessin = new Style({
+	fill: new Fill({
 		color: 'rgba(255, 255, 255, 0.2)'
 	}),
-	stroke: new ol.style.Stroke({
+	stroke: new Stroke({
 		color: 'rgba(255, 0, 0, 1.0)',
 		lineDash: [10, 10],
 		width: 2
 	}),
-	image: new ol.style.Circle({
+	image: new CircleStyle({
 		radius: 5,
-		stroke: new ol.style.Stroke({
+		stroke: new Stroke({
 			color: 'rgba(255, 0, 0, 0.85)'
 		}),
-		fill: new ol.style.Fill({
+		fill: new Fill({
 			color: 'rgba(255, 0, 0, 0.85)'
 		})
 	})
 });
 // Déclaration de l'interaction
-var interactionDraw = new ol.interaction.Draw({
+const interactionDraw = new ol.interaction.Draw({
 	type: 'Polygon',
 	source: sourceGeoJSON,
 	style: styleDessin

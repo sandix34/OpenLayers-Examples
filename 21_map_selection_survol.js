@@ -1,36 +1,52 @@
 //Ajoutons un nouveau style à l'entité sélectionnée au survol puis récupérons ses propriétés.
 
+// classes nécéssaires pour afficher la carte
+import 'ol/ol.css';
+import Map from 'ol/Map';
+import View from 'ol/View';
+
+// classes pour les vecteurs
+import GeoJSON from 'ol/format/GeoJSON';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+
+// Conteneur pour les styles de rendu d'entités vectorielles
+import Style from 'ol/style/Style';
+//Définir le style de trait pour les entités vectorielles
+import Stroke from 'ol/style/Stroke';
+//Définir le style de remplissage pour les entités vectorielles.
+import Fill from 'ol/style/Fill';
 
 // Source de données du vecteur en format GeoJSON
-var sourceGeoJSON = new ol.source.Vector({
+const sourceGeoJSON = new VectorSource({
 	url: 'data/pays.geojson',
-	format: new ol.format.GeoJSON()
+	format: new GeoJSON()
 });
 // Déclaration de la couche vectorielle	
-var vecteurGeoJSON = new ol.layer.Vector({
+const vecteurGeoJSON = new VectorLayer({
 	source: sourceGeoJSON,
 });
 // Déclaration de la carte
-var map = new ol.Map({
+let map = new Map({
 	layers: [vecteurGeoJSON],
 	target: 'map',
-	view: new ol.View({
+	view: new View({
 		center: [0,0],
 		zoom: 1
 	}),
 });
 // Déclaration du style du Polygone Sélectionné
-var styleSelect = new ol.style.Style({
-	stroke : new ol.style.Stroke({
+const styleSelect = new Style({
+	stroke : new Stroke({
 	   color: 'rgba(0,0,255,1)',
 	   width: 5
 	}),
-	fill : new ol.style.Fill({
+	fill : new Fill({
 		color: 'rgba(0,0,255,0.1)'
 	})
 });
 // Déclaration de l'interaction avec des options
-var interactionSelect = new ol.interaction.Select({
+const interactionSelect = new ol.interaction.Select({
 	// Sélection au survol
 	condition: ol.events.condition.pointerMove,
 	// Style de la sélection
@@ -39,17 +55,17 @@ var interactionSelect = new ol.interaction.Select({
 // Ajout de l'interaction à l'objet Map
 map.addInteraction(interactionSelect);
 // On charge les entités survolées (option : features) dans une variable
-var entitesSelect = interactionSelect.getFeatures();
+const entitesSelect = interactionSelect.getFeatures();
 // Récupération des propriétés de l'entité sélectionnée lors de la sélection
-entitesSelect.on('add', function(e) {
+entitesSelect.on('add', (e) => {
 	// Objet de l'entité
-	var entite = e.target.item(0);
+	let entite = e.target.item(0);
 	// Propriété
-	var proprieteEntite = entite.getProperties();
+	let proprieteEntite = entite.getProperties();
 	// Géométrie
-	var geomEntite = entite.getGeometry();
+	let geomEntite = entite.getGeometry();
 	// Attribut
-	var attributEntite = entite.get('name');
+	let attributEntite = entite.get('name');
 	console.log(attributEntite);
 });
 
