@@ -1,6 +1,6 @@
 /*
  VI. LES STYLES
-Dans la section précédente, on a vu comment ajouter des couches SIG à la carte,
+ Dans la section précédente, on a vu comment ajouter des couches SIG à la carte,
  il nous faut maintenant les styliser.
  Dans OL, les styles sont associés à l'entité géographique ol.Feature ou au vecteur directement ol.layer.Vector.
  On peut définir un style, basé sur la classe ol.style.Style  selon la géométrie des entités géographiques et
